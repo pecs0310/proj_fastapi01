@@ -5,7 +5,12 @@ from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 from starlette.responses import FileResponse
 
+# ✅ 이 줄 추가
+from apis.practice_apis import router as practice_router
 app = FastAPI()
+
+# ✅ 이 줄 추가
+app.include_router(practice_router)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,13 +38,11 @@ async def index():
 
 @app.get("/{path:path}", include_in_schema=False)
 async def catch_all(path: str):
-    # API나 정적 파일 경로는 제외 (FastAPI가 먼저 매칭하지 못한 경우에만 실행됨)
     if (
         path.startswith("api/v1")
         or path.startswith("static/")
         or path.startswith("media/")
     ):
         from fastapi import HTTPException
-
         raise HTTPException(status_code=404)
     return FileResponse(BASE_DIR / "static" / "index.html")
