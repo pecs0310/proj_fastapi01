@@ -3,16 +3,20 @@ Meeting log.md
 # TODOS 
 
 ##  2026-06-04 
-- [ ] 브랜치관리전략 확정 & 팀규칙 업데이트
+- [x] 브랜치관리전략 확정 & 팀규칙 업데이트
   >  우리 팀 브랜치 네이밍 규칙
 
     ```
-    feature/개선안         ex) feature/user-api
+    feature/기능명         ex) feature/user-api
+    >> feature/user : 사용자관리
+    >> feature/patient : 환자관리
+    >> feature/record : 진료기록
+
     hotfix/버그내용        ex) hotfix/login-error
     docs/문서명            ex) docs/team-rules
     ```
 
-- [ ] Commit msg 말머리 결정
+- [x] Commit msg 말머리 결정
   > 커밋 메시지 규칙
 
     ```
@@ -23,10 +27,11 @@ Meeting log.md
     chore: 기타 설정 변경
     ```
 
-- [ ] 프로젝트관리툴 확정 : [프로젝트 관리 툴 비교 분석](Compare_pms.md)
-    > 확정된 관리 툴 : 
+- [x] 프로젝트관리툴 확정 : [프로젝트 관리 툴 비교 분석](Compare_pms.md)
+    > 확정된 관리 툴 : Asana
     ```
     # 결정이유
+    국제적으로도 통용되는 JIRA의 대항마로서 국내에서도 상당한 인지도를 쌓았기에 이력서에 넣기가 좋은 유.명.하고 사용성이 매우 좋은 툴이라는 LLM들의 추천이 있어서.
 
     ```
 
