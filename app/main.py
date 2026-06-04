@@ -5,11 +5,9 @@ from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 from starlette.responses import FileResponse
 
-# ✅ 이 줄 추가
 from apis.practice_apis import router as practice_router
 app = FastAPI()
 
-# ✅ 이 줄 추가
 app.include_router(practice_router)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
