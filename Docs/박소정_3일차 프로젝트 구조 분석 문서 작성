@@ -42,8 +42,8 @@ AH_health_web_development_assignment
 ## 1. 각 디렉터리의 역할
 
 ### `app/core/`
-프로젝트 전체에서 공통으로 사용하는 핵심 설정을 모아두는 폴더입니다.
-환경변수 설정, 데이터베이스 연결, 공통 유틸리티 등이 위치합니다.
+프로젝트 전체에서 공통으로 사용하는 핵심 설정을 모아두는 폴더.
+환경변수 설정, 데이터베이스 연결, 공통 유틸리티 등이 위치합.
 
 ```python
 # 작성하는 파일 예시
@@ -55,8 +55,8 @@ db/models.py     # 모든 모델이 상속받는 Base 클래스 정의
 ---
 
 ### `app/models/`
-SQLAlchemy ORM을 사용하여 **데이터베이스 테이블을 Python 클래스로 정의**하는 폴더입니다.
-각 테이블마다 하나의 파일을 생성합니다.
+SQLAlchemy ORM을 사용하여 **데이터베이스 테이블을 Python 클래스로 정의**하는 폴더.
+각 테이블마다 하나의 파일을 생성.
 
 ```python
 # 작성하는 파일 예시
@@ -76,8 +76,8 @@ class User(Base):
 ---
 
 ### `app/repositories/`
-**데이터베이스 쿼리(CRUD)를 전담**하는 폴더입니다.
-비즈니스 로직(service)과 DB 접근 코드를 분리하여 유지보수를 쉽게 합니다.
+**데이터베이스 쿼리(CRUD)를 전담**하는 폴더.
+비즈니스 로직(service)과 DB 접근 코드를 분리하여 유지보수를 쉽게한다.
 
 ```python
 # 작성하는 파일 예시
@@ -92,8 +92,8 @@ async def get_user_by_email(db: AsyncSession, email: str):
 ---
 
 ### `app/schemas/`
-**API의 요청(Request) / 응답(Response) 데이터 형식을 Pydantic으로 정의**하는 폴더입니다.
-입력값 검증과 직렬화(Serialization)를 담당합니다.
+**API의 요청(Request) / 응답(Response) 데이터 형식을 Pydantic으로 정의**하는 폴더.
+입력값 검증과 직렬화(Serialization)를 담당.
 
 ```python
 # 작성하는 파일 예시
@@ -118,8 +118,8 @@ class UserResponse(BaseModel):
 
 ### `app/services/`
 **비즈니스 로직을 처리**하는 폴더입니다.
-라우터(apis)에서 요청을 받아 repository를 호출하고, 결과를 가공하여 반환합니다.
-JWT 발급, 비밀번호 해시, 권한 검사 등의 로직이 여기에 위치합니다.
+라우터(apis)에서 요청을 받아 repository를 호출하고, 결과를 가공하여 반환.
+JWT 발급, 비밀번호 해시, 권한 검사 등의 로직이 여기에 위치.
 
 ```python
 # 작성하는 파일 예시
@@ -137,9 +137,9 @@ async def signup(db: AsyncSession, data: SignupRequest):
 ---
 
 ### `app/apis/`
-**FastAPI 라우터(엔드포인트)를 정의**하는 폴더입니다.
+**FastAPI 라우터(엔드포인트)를 정의**하는 폴더.
 HTTP 메서드(GET, POST, PATCH, DELETE)와 URL 경로를 지정하고,
-요청을 받아 service 레이어로 전달한 뒤 응답을 반환합니다.
+요청을 받아 service 레이어로 전달한 뒤 응답을 반환.
 
 ```python
 # 작성하는 파일 예시
@@ -158,8 +158,8 @@ async def signup(data: SignupRequest, db: AsyncSession = Depends(get_db)):
 ## 2. 각 파일의 역할
 
 ### `app/main.py`
-FastAPI 앱을 생성하고, 각 기능별 라우터를 등록하는 **앱의 진입점(Entry Point)**입니다.
-미들웨어, static 파일 마운트, healthcheck 엔드포인트도 여기서 설정합니다.
+FastAPI 앱을 생성하고, 각 기능별 라우터를 등록하는 **앱의 진입점(Entry Point)**.
+미들웨어, static 파일 마운트, healthcheck 엔드포인트도 여기서 설정.
 
 ```python
 app = FastAPI()
@@ -170,8 +170,8 @@ app.include_router(patient_router)
 ---
 
 ### `app/core/config.py`
-`.env` 파일에 저장된 **환경변수를 불러와 전역적으로 사용할 수 있게** 해주는 설정 파일입니다.
-pydantic-settings의 `BaseSettings`를 활용합니다.
+`.env` 파일에 저장된 **환경변수를 불러와 전역적으로 사용할 수 있게** 해주는 설정 파일.
+pydantic-settings의 `BaseSettings`를 활용.
 
 ```python
 # 예시
@@ -191,8 +191,8 @@ settings = Settings()
 ---
 
 ### `pyproject.toml`
-프로젝트의 **메타정보와 의존성 패키지 목록**을 관리하는 파일입니다.
-`pip install` 대신 `uv add 패키지명` 으로 패키지를 추가하면 이 파일이 자동으로 업데이트됩니다.
+프로젝트의 **메타정보와 의존성 패키지 목록**을 관리하는 파일.
+`pip install` 대신 `uv add 패키지명` 으로 패키지를 추가하면 이 파일이 자동으로 업데이트 된다.
 
 ```toml
 [project]
@@ -207,15 +207,15 @@ dependencies = [
 ---
 
 ### `uv.lock`
-설치된 모든 패키지의 **정확한 버전을 고정**하는 파일입니다.
-팀원 모두가 `uv sync` 명령어 하나로 동일한 환경을 재현할 수 있게 해줍니다.
-직접 수정하지 않으며, `uv add` / `uv sync` 시 자동으로 갱신됩니다.
+설치된 모든 패키지의 **정확한 버전을 고정**하는 파일.
+팀원 모두가 `uv sync` 명령어 하나로 동일한 환경을 재현할 수 있게 해준다.
+직접 수정하지 않으며, `uv add` / `uv sync` 시 자동으로 갱신.
 
 ---
 
 ## 3. 데이터베이스 연결 설정 (`app/core/db/databases.py`)
 
-SQLAlchemy의 비동기 엔진을 사용하여 MySQL에 연결합니다.
+SQLAlchemy의 비동기 엔진을 사용하여 MySQL에 연결.
 
 ```python
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
@@ -271,7 +271,7 @@ uv run alembic downgrade -1
 
 ## 5. API 구현 흐름
 
-클라이언트 요청이 처리되는 전체 흐름은 아래와 같습니다.
+클라이언트 요청이 처리되는 전체 흐름.
 
 ```
 Client (HTTP 요청)
