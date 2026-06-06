@@ -30,7 +30,7 @@ AH_health_web_development_assignment
 │   │   └── index.html
 │   ├── main.py
 │   └── Dockerfile
-├── docker-compose.yml
+├── 
 ├── docs/
 ├── .env
 ├── pyproject.toml
@@ -43,7 +43,7 @@ AH_health_web_development_assignment
 
 ### `app/core/`
 프로젝트 전체에서 공통으로 사용하는 핵심 설정을 모아두는 폴더.
-환경변수 설정, 데이터베이스 연결, 공통 유틸리티 등이 위치합.
+환경변수 설정, 데이터베이스 연결, 공통 유틸리티 등이 위치.
 
 ```python
 # 작성하는 파일 예시
