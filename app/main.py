@@ -19,3 +19,8 @@ app.include_router(user_router)
 @app.get("/")
 def read_root():
     return {"status": "healthy", "message": "All routers integrated successfully."}
+
+
+@app.get("/healthcheck", status_code=200, include_in_schema=False)
+async def healthcheck():
+    return {"status": "healthy"}
