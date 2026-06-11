@@ -8,6 +8,8 @@ from sqlalchemy import and_
 from app.models.patient import Patient
 from app.schemas.patient import PatientCreate, PatientUpdate
 
+from sqlalchemy.orm import selectinload
+
 logger = logging.getLogger(__name__)
 
 
@@ -84,9 +86,13 @@ class PatientService:
         """
         REQ-PTNT-005: 삭제 전 대상 존재 확인 및 로컬 파일 경로 추출 후 DB 레코드 삭제
         """
-        # 관계형 쿼리로 진료기록(MedicalRecord)에 연동된 이미지 경로 선추출 필요
-        # (현재 레코드 스키마가 확정되지 않았으므로 안전하게 빈 리스트 또는 가상 필드로 추적)
-        patient = await PatientService.get_patient_by_id(db, patient_id)
+        # 관계형 쿼리로 진료기록(MedicalRecord)에 연동된 이미지 경로 선추출 필요 (selectinload 적용하여 MissingGreenlet 방지)
+        result = await db.execute(
+            select(Patient)
+            .options(selectinload(Patient.medical_records))
+            .where(Patient.id == patient_id)
+        )
+        patient = result.scalar_one_or_none()
         if not patient:
             return None
 
