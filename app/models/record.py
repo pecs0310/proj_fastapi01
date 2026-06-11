@@ -1,9 +1,16 @@
+<<<<<<< Updated upstream
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.dialects.mysql import CHAR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db.databases import Base
 from app.core.db.models import UUIDMixin, TimestampMixin
+=======
+from sqlalchemy import Column, BigInteger, String, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from datetime import datetime
+from app.core.db.databases import Base
+>>>>>>> Stashed changes
 
 
 class MedicalRecord(Base, UUIDMixin, TimestampMixin):
