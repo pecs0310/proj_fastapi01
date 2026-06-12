@@ -1,3 +1,4 @@
+import uuid
 from sqlalchemy.dialects.mysql import CHAR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Column, BigInteger, String, Text, DateTime, ForeignKey
@@ -16,8 +17,9 @@ class MedicalRecord(Base):
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     updated_at = Column(DateTime, nullable=True, onupdate=datetime.utcnow)
 
-    # Relationship (patients 테이블이 있을 경우)
-    # patient = relationship("Patient", back_populates="medical_records")
+    # Relationship
+    patient: Mapped["Patient"] = relationship("Patient", back_populates="medical_records")
 
     def __repr__(self):
         return f"<MedicalRecord(id={self.id}, chart_number='{self.chart_number}', patient_id={self.patient_id})>"
+
